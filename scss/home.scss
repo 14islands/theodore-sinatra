@@ -1,0 +1,35 @@
+
+/*
+ * Home
+ */
+#home #main {
+	text-align: center;
+	margin: auto;
+
+	@include pxToRem(margin-top, 70);
+	@include pxToRem(margin-bottom, 70);
+	@include pxToRem(padding, 0, 10, 0, 10);
+	@include pxToRem(max-width, 340);
+
+	h1 {
+		@include pxToRem(font-size, 20);
+		@include pxToRem(margin, 50, 0, 25);
+	}
+
+	blockquote {
+		@include pxToRem(padding, 0, 20);
+		> footer {
+			@include pxToRem(margin-top, 15);
+			@include pxToRem(font-size, 12);
+			font-style: italic;
+		}
+	}
+
+	@include if-wider-than-mobile {
+		h1 {
+			@include pxToRem(font-size, 25);
+		}
+		@include pxToRem(margin-top, 75);
+		@include pxToRem(margin-bottom, 120);
+	}
+}

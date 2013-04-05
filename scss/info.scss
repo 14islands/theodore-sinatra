@@ -1,0 +1,152 @@
+
+.wide-picture-wrapper {
+	background-color: #ddd;
+	text-align: center;
+	padding: 0;
+
+	img {
+		display: block;
+		position: relative;
+		width: 100%;
+		margin: 0 auto;
+		@include pxToRem(max-width, 568);
+
+		@include if-wider-than-mobile {
+			max-width: none;
+			@include pxToRem(min-width, 1217);
+		}
+	}
+}
+
+#info {
+
+	#main {
+		margin: 0;
+	}
+
+	h2 {
+		@include pxToRem(margin-bottom, 20);
+		@include pxToRem(font-size, 25);
+		@include if-wider-than-mobile {
+			@include pxToRem(font-size, 31);
+		}
+	}
+
+	p {
+		@extend %columsParagraph;
+	}
+
+	section {
+		@include pxToRem(padding, 25, 0, 25, 0);
+		@include if-wider-than-mobile {
+			@include pxToRem(padding, 50, 0, 50, 0);
+		}
+		
+		.wrapper {
+			@include pxToRem(padding-left, 20);
+			@include pxToRem(padding-right, 20);
+			@include box-sizing(border-box);
+		}	
+	}
+
+	.intro {
+		border-bottom: 1px solid #dedede;
+		
+		.columns {
+			@include column-grid(3);
+		}
+	}
+
+	.then-and-now {
+		@include clearfix;
+		border-bottom: 1px solid #dedede;
+		
+		.sprite-in-the-ring {
+			display: block;
+			margin: 0 auto 3em;
+
+
+			@include if-grid-layout {
+				float: left;
+				margin-right: 60px;
+			}
+		}
+
+		.columns {
+			@include column-grid(2);
+		}
+	}
+
+	.lets-talk {
+		@include if-grid-layout {
+			display: block;
+			float: left;
+			@include box-sizing(border-box);
+			padding-right: 3em;
+			width: 35%;
+			
+		}
+	}
+
+	.contact-list {
+		@include clearfix;
+		@include pxToRem(padding-bottom, 20);
+		@include if-grid-layout {
+			display: block;
+			float: left;
+			@include box-sizing(border-box);
+			width: 65%;
+		}
+	}
+
+	.contact-icon {
+		display: table;
+		@include pxToRem(width, 81);
+		@include pxToRem(height, 81);
+		background-color: #cbcbcb;
+		@include border-radius(3px);
+		@include transition(background 150ms ease-out);
+
+		color: #f2f2f2;
+		text-decoration: none;
+		@include pxToRem(font-size, 10);
+		font-weight: bold;
+
+		float: left;
+		@include pxToRem(margin, 10, 10, 10, 0);
+		overflow: hidden;
+
+		&:hover {
+			@include transition(background 200ms ease-in);
+		}
+	}
+
+	.icon-mail {
+		&:hover {
+			background-color: #8ba484;
+		}
+	}
+	.icon-facebook {
+		&:hover {
+			background-color: #6ca3d3;
+		}	
+	}
+	.icon-linkedin {
+		&:hover {
+			background-color: #699fad;
+		}
+	}	
+	.icon-dribble {
+		&:hover {
+			background-color: #c38dc1;
+		}
+	}
+	.icon-twitter {
+		&:hover {
+			background-color: #77b9d5;
+		}
+	}
+
+}
+
+

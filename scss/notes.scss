@@ -1,0 +1,73 @@
+
+
+#notes {
+
+	$borderProperties: 1px solid #e5e5e5;
+
+	nav.page-nav small {
+		@include pxToRem(font-size, 14);
+		font-style: italic;
+		font-weight: normal;
+	}
+
+	#main {
+		margin-bottom: 0;
+		border-bottom: $borderProperties;
+	}
+
+
+	article {
+		border-top: $borderProperties;
+
+		header {
+			background: white;
+			border-bottom: $borderProperties;
+		
+			.wrapper {
+				border: 0;
+				@extend %paddedMargins;
+				@include paddedTop(10, 18);
+				@include paddedBottom(10, 18);
+			}
+		}
+
+		time {
+			color: #a1a1a1;
+			@include pxToRem(font-size, 20);
+			@include if-wider-than-mobile {
+				@include pxToRem(font-size, 25);
+			}
+		}
+
+		section {
+			background: #f6f6f6 !important;
+
+			.wrapper {
+				border: 0;
+				@extend %paddedMargins;
+				@include paddedTop(30, 35);
+				@include paddedBottom(30, 35);
+			}
+			
+			h1 {
+				text-align: left;
+				@include paddedBottom(20, 25);
+			}
+
+			.columns {
+				@include column-grid(2);
+			}
+
+			.note-image {
+				@include paddedBottom(20, 40);
+				img {
+					width: 100%;
+				}
+			}
+
+			p {
+				@extend %columsParagraph;
+			}
+		}
+	}
+}

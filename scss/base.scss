@@ -1,0 +1,385 @@
+
+
+// BREAKPOINT DEFINITIONS	
+/* Breakpoint mixin - wider than most mobiles*/
+@mixin if-wider-than-mobile {
+	@media (min-width: pxToEm(568 + 1)) {
+		@content;
+	}
+}
+/* Breakpoint mixin - wide enough for skeleton grid layout to be active */
+@mixin if-grid-layout {
+	@media (min-width: pxToEm(768)) {
+		@content;
+	}
+}
+@mixin if-maximized-grid {
+	@media (min-width: pxToEm(960)) {
+		@content;
+	}
+}
+@mixin if-wider-than($px) {
+	@media (min-width: pxToEm($px)) {
+		@content;
+	}
+}
+
+
+// RESOLUTION RETINA WRAPPERS
+@mixin unless-retina {
+	@include if-max-resolution(1.49) {
+		@content;
+	}
+}
+@mixin if-retina {
+	@include if-min-resolution(1.5) {
+		@content;
+	}	
+}
+
+@mixin columns($count) {
+	columns: $count;
+	-webkit-columns: $count;
+	-moz-columns: $count;
+}
+
+@mixin column-gap($ems) {
+	-webkit-column-gap: setUnit($ems, em);
+	column-gap: setUnit($ems, em);
+}
+
+@mixin avoid-break-inside {
+	-webkit-break-inside: avoid;
+	-webkit-column-break-inside: avoid;
+	break-inside: avoid;
+}
+
+@mixin column-grid($max) {
+	@include columns(1);
+	@include column-gap(1);
+	
+	p {
+		@include avoid-break-inside;
+	}
+
+	@include if-grid-layout {
+		@include columns(2);
+		@include column-gap(2);
+	}
+
+	@include if-maximized-grid {
+		@include columns($max);
+		@include column-gap(2);
+	}		
+}
+
+
+@mixin paddedTop($mobilePadding, $biggerPadding) {
+	@include pxToRem(padding-top, $mobilePadding);
+	@include if-wider-than-mobile {
+		@include pxToRem(padding-top, $biggerPadding);
+	}
+}
+
+@mixin paddedBottom($mobilePadding, $biggerPadding) {
+	@include pxToRem(padding-bottom, $mobilePadding);
+	@include if-wider-than-mobile {
+		@include pxToRem(padding-bottom, $biggerPadding);
+	}
+}
+
+%columsParagraph {
+	@include pxToRem(padding-bottom, 20);
+	@include pxToRem(font-size, 15);
+	@include if-wider-than-mobile {
+		@include pxToRem(font-size, 16);
+	}
+}
+
+%paddedMargins {
+	@include pxToRem(padding-left, 20);
+	@include pxToRem(padding-right, 20);
+	@include box-sizing(border-box);	
+
+	@include if-wider-than-mobile {
+		@include pxToRem(padding-left, 30);
+		@include pxToRem(padding-right, 30);
+	}
+}
+
+
+
+// accessible way of hiding text for image replacement
+%ir-hide-text {
+	position: absolute !important;
+  clip: rect(1px 1px 1px 1px); // IE6, IE7
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	/* bottom = footer height */
+	@include pxToRem(margin-bottom, 40);
+	@include if-wider-than-mobile {
+ 		@include pxToRem(margin-bottom, 60);
+ 	}
+
+	font-family: 'Lora', serif;
+	color: #5b5b5b;
+	background-color: #f6f6f6;
+	-webkit-font-smoothing: antialiased; // makes bold thinner, more like in PS
+
+	p {
+		line-height: 1.35em;
+	}
+}
+
+
+/*
+* Typo base
+*/
+h1 {
+	text-align: center;
+	@include pxToRem(font-size, 25);
+	font-weight: bold;
+}
+
+p a {
+	font-weight: bold;
+	color: #d78e1b;
+	text-decoration: none;
+	&:hover {
+		color: #f19f1e;
+	}
+}
+
+a.link-facebook {
+	color: #5199d7;
+	&:hover {
+		color: #61acec;
+	};
+}
+
+
+
+/*
+ * Sprite settings
+ */
+$spriteWidth: 700;
+$spriteHeight: 350;
+@mixin sprite-background-size {
+	@include pxToRem(background-size, $spriteWidth, $spriteHeight);
+}
+@mixin sprite($position) {
+	display: block;
+	background-position: $position;
+	background-repeat: no-repeat;
+	@include sprite-background-size;
+
+	@include unless-retina { background-image: url('/sprites/sprite@1x.png'); }
+	@include     if-retina { background-image: url('/sprites/sprite@2x.png'); }
+}
+
+.sprite-theodore {
+	margin: 0 auto;
+	@include pxToRem(width, (437/2));
+	@include pxToRem(height, (500/2));
+	@include sprite(0 -50px);
+}
+
+.sprite-in-the-ring {
+	@include pxToRem(width, (414/2));
+	@include pxToRem(height, (408/2));
+	@include sprite(-250px 0);
+}
+
+.icon-mail {
+	@include sprite(-250px -210px);
+}
+.icon-facebook {
+	@include sprite(-340px -210px);
+}
+.icon-linkedin {
+	@include sprite(-430px -210px);
+}	
+.icon-dribble {
+	@include sprite(-520px -210px);
+}
+.icon-twitter {
+	@include sprite(-610px -210px);
+}
+
+
+
+/*
+* Header
+*/
+body > header {
+	// 'mobile' sizes
+	$smallHeaderHeight: 40;
+	$bigHeaderHeight: 58;
+
+	// 'wider than mobile' sizes
+	$smallLogoWidth: 50;
+	$bigLogoWidth: 80;
+
+	background-color: #ececec;
+	border-bottom: 1px solid #dedede;
+ 	
+ 	#logo {
+		display: inline-block;
+		float: left;
+		border-right: 1px dotted #c9c9c9;
+		@include box-sizing(border-box);
+
+		// use sprite but scale it down slightly to fit the small header
+		@include sprite(11px 5px);
+		@include pxToRem(background-size, $spriteWidth * ($smallHeaderHeight / $bigHeaderHeight));
+
+		@include pxToRem(height, $smallHeaderHeight);
+		@include pxToRem(width, $smallLogoWidth);
+
+		@include if-wider-than-mobile {
+			@include pxToRem(height, $bigHeaderHeight);
+		  	@include pxToRem(width, $bigLogoWidth);
+		  	@include pxToRem(background-position, 20, 8);
+		  	@include sprite-background-size;
+		}
+
+		> span {
+			@extend %ir-hide-text;
+	  }
+	}
+
+	nav {
+		text-transform: uppercase;
+		@include box-sizing(border-box);
+		@include pxToRem(font-size, 12);
+		@include pxToRem(line-height, $smallHeaderHeight);
+		@include pxToRem(margin-left, $smallLogoWidth);
+
+		@include if-wider-than-mobile {
+			@include pxToRem(line-height, $bigHeaderHeight);
+		 	@include pxToRem(margin-left, $bigLogoWidth);
+		}
+
+		// switch to smaller font under 280px wide
+		@media (max-width: pxToEm(280)) {
+			@include pxToRem(font-size, 10);
+		}
+		
+		a {
+			width: 33.33%;
+			display: inline-block;
+			text-align: center;
+			text-decoration: none;
+			color: #5b5b5b;
+
+			@include box-sizing(border-box);
+
+			& + a {
+				border-left: 1px dotted #c9c9c9;
+			}  
+
+			&.selected,
+			&:hover,
+			&:active {
+				background: #fff;
+			}
+
+			// switch nav links to stack vertically
+			@media (max-width: pxToEm(220)) {
+				display: block;
+				width: auto;
+				& + a {
+					border-top: 1px dotted #c9c9c9;
+				}  
+			}
+		}
+
+	}
+} // header end
+
+
+/*
+ * Footer
+ */
+body > footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+
+	display: block;
+	border-top: 1px solid #e1e1e1;
+	@include clearfix;
+ 	@include pxToRem(height, 40);
+
+ 	@include if-wider-than-mobile {
+ 		@include pxToRem(height, 60);
+ 	}
+	
+	background: #ececec no-repeat center center;
+	@include pxToRem(background-size, 169, 25);
+
+	@include unless-retina { background-image: url('/sprites/footer-anchor@1x.png'); }
+	@include     if-retina { background-image: url('/sprites/footer-anchor@2x.png'); }
+}
+
+
+/** 
+ * Main content 
+ */
+#main {
+	width: 100%;
+	@include pxToRem(margin-bottom, 70);
+	@include box-sizing(border-box);
+	@include clearfix;
+
+	section {
+		&:nth-child(even) {
+			background: #ececec;
+		}
+		@include clearfix;
+	}
+
+	overflow-x: hidden;
+}
+
+nav.page-nav {
+	background: #fff;
+	h1 {
+		color: #908f8f;
+		@include pxToRem(font-size, 14);
+	}
+	.wrapper {
+		@include pxToRem(padding, 10, 0);
+		@include if-wider-than-mobile {
+			@include pxToRem(padding, 21, 0);
+		}
+	}
+}
+
+
+/*
+*  Last breakpoint - Bigger than 960 grid - lock it down!
+*/
+@media (min-width: pxToEm(941)) {
+	.wrapper {
+		@include pxToRem(max-width, 940);
+		margin: 0 auto;
+	}
+	header .wrapper,
+	nav.page-nav .wrapper {
+		@include box-sizing(border-box);
+		border-left: 1px dotted #c9c9c9;
+		border-right: 1px dotted #c9c9c9;
+	}
+	header nav a {
+		width: 33.28%;
+	}
+}

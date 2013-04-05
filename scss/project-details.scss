@@ -1,0 +1,253 @@
+/*
+* Projects details
+*/
+
+#project-details {
+
+	#main {
+		margin: 0;
+
+		h1 {
+			@include pxToRem(font-size, 36);
+			letter-spacing: -0.05em;
+			@include if-wider-than-mobile {
+				@include pxToRem(font-size, 60);
+			}
+		}
+		h2 {
+			@include pxToRem(font-size, 24);
+			@include pxToRem(margin-bottom, 15);
+			letter-spacing: -0.05em;
+			@include if-wider-than-mobile {
+				@include pxToRem(font-size, 31);
+			}
+		}
+		p {
+			@include pxToRem(font-size, 15);
+			@include pxToRem(margin-bottom, 15);
+			@include if-wider-than-mobile {
+				@include pxToRem(font-size, 16);
+			}
+		}
+		img {
+			max-width: 100%;
+		}
+	}
+	
+	.project-hero {
+		background: #efefef;
+		border-top: 1px solid #d8d8d8;
+		text-align: center;
+		@extend .wide-picture-wrapper;
+	}
+
+	section {	
+		@include pxToRem(padding-top, 25);
+		@include pxToRem(padding-bottom, 25);
+
+		@include if-wider-than-mobile {
+			@include pxToRem(padding-top, 60);
+			@include pxToRem(padding-bottom, 60);
+		}
+	}
+
+	.project-headline {
+		text-align: center;
+		padding-top: 0;
+		@extend %paddedMargins;
+		@include box-sizing(border-box);	
+
+		h1 {
+			@include pxToRem(margin-top, 40);
+			@include pxToRem(margin-bottom, 25);
+		}
+		p {
+			margin-bottom: 0;
+			@include pxToRem(font-size, 18);
+			@include pxToRem(line-height, 24);
+
+			&:last-of-type:after {
+				@include pxToRem(margin-top, 40);
+				content: '';
+				display: block;
+				height: 10px;
+				@include sprite(center -340px);
+			}
+
+			@include if-wider-than-mobile {
+				@include pxToRem(font-size, 22);
+			}
+		}
+		img {
+			@include pxToRem(margin-top, 37);
+			@include pxToRem(margin-bottom, 5);
+		}
+
+		// lock down width according to design
+		@include if-wider-than(580) {
+			width: 580px;
+			margin: 0 auto;
+		}
+	}
+
+	.project-item-grouped {
+		.item {
+			@extend %paddedMargins;
+		}
+		div[data-picture] {
+			text-align: center;
+			@include pxToRem(margin-bottom, 25);
+		}
+		p {
+			@include pxToRem(margin-bottom, 30);
+		}
+
+	@include pxToRem(padding-bottom, 0);
+		@include if-wider-than-mobile {
+			@include pxToRem(padding-bottom, 30);
+		}
+
+		@include if-grid-layout {
+			.item {
+				float: left;
+				width:50%;
+				@include pxToRem(padding-right, 0);
+			}
+			div[data-picture] {
+				text-align: left;
+			}
+			p {
+				@include pxToRem(padding-right, 50);
+			}
+			.item:last-child {
+				@include pxToRem(padding-left, 20);
+				> p {
+					display: table-cell;
+					@include pxToRem(margin-bottom, 0);
+				}
+				> div[data-picture] {
+					display: table-header-group;
+					> img {
+						@include pxToRem(margin-bottom, 30);
+					}
+				}
+			}
+		}
+	}
+		
+
+	.project-item-large {
+		.wrapper {
+			@extend %paddedMargins;
+		}
+
+		p {
+			@include pxToRem(margin-bottom, 20);
+			@include if-wider-than-mobile {
+				@include pxToRem(margin-bottom, 30);
+			}
+		}
+
+		.columns {
+			@include column-grid(2);
+		}
+	}
+
+
+	.project-item-aside {
+		.wrapper {
+			@extend %paddedMargins;
+		}
+
+		@include if-grid-layout {
+			.text {
+				box-sizing: border-box;
+				@include pxToRem(padding-right, 50);
+			}
+
+			&:nth-child(odd) {
+				.text {
+					float: left;
+					width: 50%;
+				}
+				div[data-picture] {
+					width: 50%;
+					float: right;
+				}
+			}
+			&:nth-child(even) {
+				.text {
+					float: right;
+					width: 50%;
+					@include pxToRem(padding-left, 20);
+					@include pxToRem(padding-right, 30);
+				}
+				div[data-picture] {
+					width: 50%;
+					float: left;
+				}
+			}
+		}
+	}
+
+	/*
+	.list-item {
+		@include pxToRem(min-height, 400);
+
+		.columns {
+			@include box-sizing(border-box);
+		}
+
+		.item-title {
+			@include pxToRem(margin-top, 40);
+			@include if-grid-layout {
+				@include pxToRem(margin-top, 120);
+			}
+			@include if-maximized-grid {
+				@include pxToRem(margin-top, 150);
+			}
+			margin-bottom: 0;
+		}
+		.item-image {
+			margin: 0;
+		}
+		.item-text {
+			@include pxToRem(margin-bottom, 50);
+		}
+		&:nth-child(even) {
+			@include if-grid-layout {
+				.item-title,
+				.item-text {
+					@include pxToRem(padding-left, 25);
+				}
+			}
+			.item-image {
+				float: right;
+			}
+		}
+		&:nth-child(odd) {
+			.item-title,
+			.item-text {
+				@include if-grid-layout {
+					@include pxToRem(padding-right, 25);
+				}
+				float: right;
+			}
+		}
+		
+	}
+
+	.columns {
+		img {
+			max-width: 100%;	
+		}
+		@include pxToRem(margin-bottom, 20);
+		@include if-grid-layout {
+			@include pxToRem(margin-bottom, 40);
+		}
+		&.center {
+			text-align: center;
+		}
+	}
+	*/
+}
