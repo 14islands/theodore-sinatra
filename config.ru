@@ -1,3 +1,2 @@
-require File.expand_path '../site.rb', __FILE__
-
+require './site'
 run Sinatra::Application
