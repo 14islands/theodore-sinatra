@@ -357,10 +357,21 @@ nav.page-nav {
 		@include pxToRem(font-size, 14);
 	}
 	.wrapper {
+		position: relative;
 		@include pxToRem(padding, 10, 0);
 		@include if-wider-than-mobile {
 			@include pxToRem(padding, 21, 0);
 		}
+	}
+	.nav-prev {
+		position: absolute;
+		top: 20px;
+		left: 10px;
+	}
+	.nav-next {
+		position: absolute;
+		top: 20px;
+		right: 10px;
 	}
 }
 
