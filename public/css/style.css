@@ -312,6 +312,35 @@ a.link-facebook {
     .icon-twitter {
       background-image: url("/sprites/sprite@2x.png"); } }
 
+.nav-prev span, .nav-next span {
+  display: block;
+  width: 11px;
+  height: 18px; }
+
+.nav-prev span {
+  display: block;
+  background-position: -520px 0;
+  background-repeat: no-repeat;
+  background-size: 700px 350px; }
+  @media (-webkit-max-device-pixel-ratio: 1.49), (max--moz-device-pixel-ratio: 1.49), (-o-max-device-pixel-ratio: 2.98 / 2), (max-device-pixel-ratio: 1.49), (max-resolution: 143.04dpi), (max-resolution: 1.49dppx) {
+    .nav-prev span {
+      background-image: url("/sprites/sprite@1x.png"); } }
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    .nav-prev span {
+      background-image: url("/sprites/sprite@2x.png"); } }
+
+.nav-next span {
+  display: block;
+  background-position: -610px 0;
+  background-repeat: no-repeat;
+  background-size: 700px 350px; }
+  @media (-webkit-max-device-pixel-ratio: 1.49), (max--moz-device-pixel-ratio: 1.49), (-o-max-device-pixel-ratio: 2.98 / 2), (max-device-pixel-ratio: 1.49), (max-resolution: 143.04dpi), (max-resolution: 1.49dppx) {
+    .nav-next span {
+      background-image: url("/sprites/sprite@1x.png"); } }
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3 / 2), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    .nav-next span {
+      background-image: url("/sprites/sprite@2x.png"); } }
+
 /*
 * Header
 */
@@ -449,18 +478,19 @@ nav.page-nav {
     font-size: 14px; }
   nav.page-nav .wrapper {
     position: relative;
-    padding: 10px 0px; }
-    @media (min-width: 35.5625em) {
-      nav.page-nav .wrapper {
-        padding: 21px 0px; } }
-  nav.page-nav .nav-prev {
+    padding: 21px 0px; }
+  nav.page-nav a {
     position: absolute;
-    top: 20px;
-    left: 10px; }
-  nav.page-nav .nav-next {
-    position: absolute;
-    top: 20px;
-    right: 10px; }
+    top: 0; }
+    nav.page-nav a:hover {
+      background: #f6f6f6; }
+  nav.page-nav a.nav-prev {
+    left: 0px; }
+  nav.page-nav a.nav-next {
+    right: 0px; }
+  nav.page-nav .nav-prev span,
+  nav.page-nav .nav-next span {
+    margin: 22px 30px 20px 30px; }
 
 /*
 *  Last breakpoint - Bigger than 960 grid - lock it down!

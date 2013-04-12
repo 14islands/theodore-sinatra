@@ -1,4 +1,4 @@
 *.sublime*
 *.DS_Store
 *.sass-cache
-.Gemfile.lock
+Gemfile.lock

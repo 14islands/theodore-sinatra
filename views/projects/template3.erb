@@ -1,14 +1,4 @@
-<nav class="page-nav">
-	<div class="wrapper">
-		<% if project_prev? %>
-		<a href="<%=project_prev_url()%>" class="nav-prev">prev</a>
-		<% end %>
-		<h1><%= @project[:title]%></h1>
-		<% if project_next? %>
-		<a href="<%=project_next_url()%>" class="nav-next">next</a>
-		<% end %>
-	</div>
-</nav>
+<%= erb :"partials/nav-links" %>
 
 <div id="main">
 	

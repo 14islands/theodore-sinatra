@@ -112,8 +112,8 @@
 // accessible way of hiding text for image replacement
 %ir-hide-text {
 	position: absolute !important;
-  clip: rect(1px 1px 1px 1px); // IE6, IE7
-  clip: rect(1px, 1px, 1px, 1px);
+	clip: rect(1px 1px 1px 1px); // IE6, IE7
+	clip: rect(1px, 1px, 1px, 1px);
 }
 
 html {
@@ -211,6 +211,19 @@ $spriteHeight: 350;
 }
 .icon-twitter {
 	@include sprite(-610px -210px);
+}
+%nav-link {
+	display: block;
+	@include pxToRem(width, (22/2));
+	@include pxToRem(height, (36/2));
+}
+.nav-prev span {
+	@extend %nav-link;
+	@include sprite(-520px 0);
+}
+.nav-next span {
+	@extend %nav-link;
+	@include sprite(-610px 0);
 }
 
 
@@ -358,20 +371,25 @@ nav.page-nav {
 	}
 	.wrapper {
 		position: relative;
-		@include pxToRem(padding, 10, 0);
-		@include if-wider-than-mobile {
-			@include pxToRem(padding, 21, 0);
+		@include pxToRem(padding, 21, 0);
+	}
+	a {
+		position: absolute;
+		top: 0;
+
+		&:hover {
+			background: #f6f6f6;
 		}
 	}
-	.nav-prev {
-		position: absolute;
-		top: 20px;
-		left: 10px;
+	a.nav-prev {
+		left: 0px;
 	}
-	.nav-next {
-		position: absolute;
-		top: 20px;
-		right: 10px;
+	a.nav-next {
+		right: 0px;
+	}
+	.nav-prev span,
+	.nav-next span {
+		margin: 22px 30px 20px 30px;  
 	}
 }
 
